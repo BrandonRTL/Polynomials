@@ -57,7 +57,6 @@ public:
 		{
 			curr->next = new Node<ValType>;
 			curr = curr->next;
-		//	std::cout << (curr->Data = othcurr->Data) << ",";
 			curr->next = nullptr;
 		}
 		head = dummyHead->next;
@@ -339,7 +338,7 @@ public:
 	double coef;
 	int degree;
 
-	Monom(double _coef = 4815162342,  int _degree = 0) // Если ты читаешь ети цифры и не знаешь, что они значат, то ты плохой человек, вот
+	Monom(double _coef = 4815162342,  int _degree = 0) 
 	{
 		coef = _coef;
 		degree = _degree;
@@ -405,48 +404,12 @@ public:
 				j++;
 			SubString1 = StP.substr(0, j);
 			StP.erase(0, j);
-		//	std::cout << "SubStr " << SubString1 << std::endl;
+
 			Monom tmp(SubString1);
 			Monoms.push_back(tmp);
 		}
-		/*for (int i = 0; i < Monoms.GetSize(); i++)
-		{
-			std::cout << Monoms[i].coef << std::endl;
-			std::cout << Monoms[i].degree << std::endl;
-		}*/
 		Monom x;
-		/*for (int i = 0; i < Monoms.GetSize(); i++)
-		{
-			for (int j = i+1; j < Monoms.GetSize();j++)
-			{
-				if (Monoms[i].degree == Monoms[j].degree)
-				{
-				//	std::cout << Monoms[i].coef << "   " << Monoms[j].coef << std::endl;
-					Monoms[i].coef += Monoms[j].coef;
-					Monoms.Remove(j);
-				}
-			}
-		}
-		for (int i = 0; i < Monoms.GetSize(); i++)
-		{
-			for (j = Monoms.GetSize() - 1; j > i; j--)
-			{     
-				if (Monoms[j - 1] > Monoms[j])
-				{
-					x = Monoms[j - 1]; 
-					Monoms[j - 1] = Monoms[j];
-					Monoms[j] = x;
-				}
-			}
-		}*/
 		Sort_and_summ_similar();
-	/*	std::cout << std::endl << std::endl << std::endl << std::endl << std::endl;
-		for (int i = 0; i < Monoms.GetSize(); i++)
-		{
-			std::cout << Monoms[i].coef << std::endl;
-			std::cout << Monoms[i].degree << std::endl;
-		}
-		*/
 	}
 	void Sort_and_summ_similar()
 	{
@@ -457,7 +420,6 @@ public:
 			{
 				if (Monoms[i].degree == Monoms[j].degree)
 				{
-					//	std::cout << Monoms[i].coef << "   " << Monoms[j].coef << std::endl;
 					Monoms[i].coef += Monoms[j].coef;
 					Monoms.Remove(j);
 				}
@@ -491,7 +453,6 @@ public:
 		Res.Monoms = Monoms;
 		for (int i = 0; i < Res.Monoms.GetSize(); i++)
 		{
-		//	std::cout << std::endl << i << std::endl;
 			Res.Monoms[i].coef *= x;
 		}
 		Res.Sort_and_summ_similar();
@@ -509,7 +470,7 @@ public:
 				Monom temp;
 				if ((((*i).degree % 10 + (*j).degree % 10) >= 10) || (((*i).degree / 10 % 10 + (*j).degree / 10 % 10) >= 10) || (((*i).degree / 100 % 10 + (*j).degree / 100 % 10) >= 10))
 				{
-					throw "Ne ny tut slishkom bolshya stepen";
+					throw "Degree overflow";
 				}
 				temp.degree = (*i).degree + (*j).degree;
 				temp.coef = (*i).coef * (*j).coef;
@@ -570,7 +531,6 @@ bool ITSFC(std::string S)
 	int z_count = 0;
 	for (int i = 0; i < S.size(); i++)
 	{
-	//	std::cout << status;
 		if (status == 0)
 		{
 			if (S[i] >= 48 && S[i] <= 57)
@@ -671,7 +631,6 @@ bool ITSFC(std::string S)
 		}
 		else
 			status = 10;
-	//	std::cout << " " << status << std::endl << std::endl;
 	}
 	if (status == 10)
 		res = 0;
