@@ -510,6 +510,22 @@ public:
 				j++;
 			}
 		}
+		if (j == 0)
+		{
+			while (i != 0)
+			{
+				Res.Monoms.push_back(*i);
+				i++;
+			}
+		}
+		if (i == 0)
+		{
+			while (j != 0)
+			{
+				Res.Monoms.push_back(*j);
+				j++;
+			}
+		}
 		return Res;
 	}
 	Polynom operator-(Polynom& P)
